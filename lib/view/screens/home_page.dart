@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:voice_assistant/view/shared/palette.dart';
-import 'package:voice_assistant/view/shared/widget/custom_circle_widget.dart';
+import 'package:voice_assistant/view/shared/widgets/custom_chart_bubble_widget.dart';
+import 'package:voice_assistant/view/shared/widgets/custom_circle_widget.dart';
+import 'package:voice_assistant/view/shared/widgets/feature_container.dart';
+import 'package:voice_assistant/view/shared/widgets/virtual_assistant_widget.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,39 +21,58 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Voice Assistant'),
         leading: const Icon(Icons.menu),
       ),
-      body: Column(
-        children: [
-          //virtual assistant Picture....
-          Stack(
-            children: [
-              const Center(
-                child: CustomCircleWidget(),
-              ),
-              Container(
-                height: 123.h,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                      image: AssetImage('assets/images/virtualAssistant.png')),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          children: [
+            const Stack(
+              children: [
+                // Custom Circle Container....
+                Center(
+                  child: CustomCircleWidget(),
                 ),
-              )
-            ],
-          ),
-          // chat bubble.....
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10).r,
-            margin: const EdgeInsets.symmetric(horizontal: 40).copyWith(
-              top: 30.w,
+                //  Virtual Assistant Picture Container...
+                Center(
+                  child: VirtualAssistantWidget(),
+                )
+              ],
             ),
-            decoration: BoxDecoration(
-              border: Border.all(color: Palette.borderColor),
+            // chat bubble.....
+            const CustomChatBubbleWidget(),
+            //...........
+            Container(
+              padding: const EdgeInsets.all(10).r,
+              alignment: Alignment.centerLeft,
+              margin: const EdgeInsets.only(top: 10, left: 22).r,
+              child: Text(
+                'Here are the New features ',
+                style: TextStyle(
+                  fontFamily: 'Cera Pro',
+                  fontSize: 20.sp,
+                  color: Palette.mainFontColor,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
-            child:  Text(
-              'Good Morning What Task can i do for you?',
-              style: TextStyle(color: Palette.mainFontColor, fontSize: 25.sp, fontFamily: 'Cera Pro '),
-            ),
-          ),
-        ],
+            //features list container ......
+            const Column(
+              children: [
+                // first card
+                FeatureContainer(
+                  color: Palette.firstSuggestionBoxColor,
+                  headerText: 'ChatGPT',
+                  descriptionText:
+                      'A Smarter way to stay organized and informed with ChatGPT',
+                ),
+                // second card....
+                FeatureContainer(
+                    color: Palette.secondSuggestionBoxColor,
+                    headerText: 'DALL-E',
+                    descriptionText: 'Get inspired and stay creative with your personal assistant powered by Dall-E')
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

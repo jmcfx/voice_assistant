@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:voice_assistant/view/screens/home_page.dart';
 import 'package:voice_assistant/view/shared/palette.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Voice Assistant ',
           theme: ThemeData.light(useMaterial3: true).copyWith(
-           // colorScheme: const ColorScheme.light(background: Palette.whiteColor),
+          // colorScheme: const ColorScheme.light(background:Colors.red ),
            scaffoldBackgroundColor: Palette.whiteColor,
            appBarTheme: const AppBarTheme(
             centerTitle: true,
@@ -36,3 +37,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
